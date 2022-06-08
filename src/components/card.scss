@@ -1,0 +1,29 @@
+.cards {
+    display: inline-flex;
+}
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: none;
+    margin: 0.5rem;
+
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffff;
+}
+.isFlipped {
+    background-color: #fda214;
+}
+
+.notFlipped {
+    background-color: #bcced9;
+}
+
+.isMatched{
+    background-color: #220040;
+}
