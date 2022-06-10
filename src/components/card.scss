@@ -1,21 +1,23 @@
-.cards {
-    display: inline-flex;
-}
-.card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
 
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    border: none;
-    margin: 0.5rem;
+    margin-bottom: 5.375rem;
 
-    font-size: 2em;
-    font-weight: bold;
-    color: #ffff;
+    .cards-grid__card {
+        width: 72px;
+        height: 72px;
+
+        border-radius: 100%;
+        border: none;
+
+        font-size: 2.5rem;
+        color: #fcfcfc;
+    }
 }
+
 .isFlipped {
     background-color: #fda214;
 }
@@ -24,6 +26,6 @@
     background-color: #bcced9;
 }
 
-.isMatched{
+.isMatched {
     background-color: #220040;
 }

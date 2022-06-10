@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap");
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+// =========== Utilities //
+
+.btn {
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: none;
+    color: #FCFCFC;
+
+    border-radius: 35px;
+    border: none;
+}
+
+.btn-yellow {
+    background-color: #fda214;
+}
+
+.btn-grey {
+    background-color: #BCCED9;
+}
+
