@@ -43,7 +43,13 @@ button {
 
     border-radius: 35px;
     border: none;
+    background-color: #BCCED9;
 }
+
+.btn--selected{
+    background-color: #152938;
+}
+
 
 .btn-yellow {
     background-color: #fda214;
@@ -52,9 +58,3 @@ button {
 .btn-grey {
     background-color: #BCCED9;
 }
-
-.btn-dark{
-    background-color: #152938;
-}
-
-

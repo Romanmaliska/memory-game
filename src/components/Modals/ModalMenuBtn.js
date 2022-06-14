@@ -6,6 +6,7 @@ const ModalMenuBtn = (props) =>
     props.isShowingMenuModal
         ? ReactDOM.createPortal(
               <div className="modal-overlay">
+                <div className="centered">
                   <div className="modal">
                       <button
                           className="btn btn-grey"
@@ -19,15 +20,17 @@ const ModalMenuBtn = (props) =>
                       >
                           New Game
                       </button>
-                      <button className="btn btn-grey" onClick={props.toggleMenuModal}>
-                          Resume Game{" "}
+                      <button
+                          className="btn btn-grey"
+                          onClick={props.toggleMenuModal}
+                      >
+                          Resume Game
                       </button>
+                      </div>
                   </div>
               </div>,
               document.body
           )
         : null;
-
-        
 
 export default ModalMenuBtn;

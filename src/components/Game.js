@@ -4,12 +4,11 @@ import MovesCounter from "./MovesCounter";
 import Stopwatch from "./Stopwatch";
 import PlayerChanger from "./PlayerChanger";
 import ModalMenuBtn from "./Modals/ModalMenuBtn";
-import useModalMenuBtn from "./Modals/useModalMenuBtn";
 import ModalOnePlayerGameStats from "./Modals/ModalOnePlayerGameStats";
 import "./game.scss";
 
 const Game = (props) => {
-    //creates card's array with duplicated numbers based on chosen grid size
+    //creating card's array with duplicated numbers based on chosen grid size
     const createCards = () => {
         const cardsNumbers = [];
         for (let i = 1; i <= props.gridSize; i++) {
@@ -18,7 +17,7 @@ const Game = (props) => {
         return [...cardsNumbers, ...cardsNumbers];
     };
 
-    // shuflle the cards array and add default object keys: values
+    // shuflling the cards array and add default objects keys and values
     const shuffleCards = () => {
         const shuffledCards = createCards()
             .sort(() => Math.random() - 0.5)
@@ -33,41 +32,38 @@ const Game = (props) => {
         return shuffledCards;
     };
 
-    const [cards, setCards] = React.useState(()=>shuffleCards());
+    const [cards, setCards] = React.useState(() => shuffleCards());
     const [firstFlipped, setFirstFlipped] = React.useState();
     const [secondFlipped, setSecondFlipped] = React.useState();
-    const [movesCounter, setMovesCounter] = React.useState(0);
-    const [playerStartedGame, setPlayerStartedGame] = React.useState(false);
-    let isGameFinished = cards.every((card) => card.isMatched);
-    console.log(cards)
 
-    //check if game started for Stopwatch
+    //displaying Game component
+    const displayCards = cards.map((card) => (
+        <Card
+            key={card.id}
+            value={card.value}
+            id={card.id}
+            isFlipped={card.isFlipped}
+            isMatched={card.isMatched}
+            disabled={card.disabled}
+            gridSize={props.gridSize}
+            handleClick={() => handleClick(card.value, card.id)}
+        />
+    ));
 
-    React.useEffect(() => {
-        if (isGameFinished) {
-            setPlayerStartedGame(false);
-        } else if (movesCounter || firstFlipped) {
-            setPlayerStartedGame(true);
-        }
-    }, [movesCounter, firstFlipped, isGameFinished]);
-
-    // assign the cards value and id to firstFlipped or secondFlipped
-
+    // assigning the card's value and id to firstFlipped or secondFlipped
     const handleClick = (value, id) => {
         firstFlipped
             ? setSecondFlipped({ value, id })
             : setFirstFlipped({ value, id });
     };
 
-    // reseting Flipped cards
-
+    // reseting flipped cards to default values
     const resetFlipped = () => {
         setFirstFlipped();
         setSecondFlipped();
     };
 
-    // managing cards selection
-
+    // managing cards selected by player
     React.useEffect(() => {
         if (secondFlipped && firstFlipped.value === secondFlipped.value) {
             setCards((prevCards) => {
@@ -125,39 +121,42 @@ const Game = (props) => {
         }
     }, [firstFlipped, secondFlipped]);
 
-    const displayCards = cards.map((card) => (
-        <Card
-            key={card.id}
-            value={card.value}
-            id={card.id}
-            isFlipped={card.isFlipped}
-            isMatched={card.isMatched}
-            disabled={card.disabled}
-            gridSize={props.gridSize}
-            handleClick={() => handleClick(card.value, card.id)}
-        />
-    ));
+    //counting the pairs of cards flipped by player
+    const [movesCounter, setMovesCounter] = React.useState(0);
+    const [playerStartedGame, setPlayerStartedGame] = React.useState(false);
 
-    // render Modal for Menu button
+    //toggling Modal - ModalMenuBtn
+    const [isShowingMenuModal, setIsShowingMenuModal] = React.useState(false);
 
-    const { isShowingMenuModal, toggleMenuModal } = useModalMenuBtn();
+    const toggleMenuModal = () => {
+        setIsShowingMenuModal(!isShowingMenuModal);
+    };
 
-    // handle restart game from Modal btn Restart
+    // checking if game is finished
+    let isGameFinished = cards.every((card) => card.isMatched);
 
+    React.useEffect(() => {
+        if (isGameFinished) {
+            setPlayerStartedGame(false);
+        } else if (movesCounter || firstFlipped) {
+            setPlayerStartedGame(true);
+        }
+    }, [movesCounter, firstFlipped, isGameFinished]);
+
+    //sending time from Stopwatch to ModalOnePlayerGameStats
+    const [time, setTime] = React.useState(0);
+
+    const stopwatchTime = (seconds) => {
+        setTime(seconds);
+    };
+
+    // handling restart of the game from Modals btns - ModalMenuBtn and ModalOnePlayerGameStats
     const handleRestart = () => {
-        setCards((prevCards) => {
-            return prevCards.map((card) => {
-                return {
-                    ...card,
-                    disabled: false,
-                    isFlipped: false,
-                    isMatched: false,
-                };
-            });
-        });
+        setCards(() => shuffleCards());
         resetFlipped();
-        setPlayerStartedGame(false)
+        setPlayerStartedGame(false);
         setMovesCounter((prevMovesCounter) => 0);
+
         if (!isGameFinished) {
             toggleMenuModal();
         }
@@ -187,8 +186,8 @@ const Game = (props) => {
                     <Stopwatch
                         isGameFinished={isGameFinished}
                         playerStartedGame={playerStartedGame}
-                        isShowing={isShowingMenuModal}
-                        movesCounter={movesCounter}
+                        isShowingMenuModal={isShowingMenuModal}
+                        stopwatchTime={stopwatchTime}
                     />
                 </footer>
             ) : (
@@ -208,6 +207,8 @@ const Game = (props) => {
                 isGameFinished={isGameFinished}
                 handleRestart={handleRestart}
                 handleStartGame={props.handleStartGame}
+                movesCounter={movesCounter}
+                time={time}
             />
         </>
     );

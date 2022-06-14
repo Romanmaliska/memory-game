@@ -11,8 +11,8 @@ const GameOptions = (props) => {
                     <button
                         className={
                             props.numberOfPlayers === 1
-                                ? "btn btn-dark four"
-                                : "btn btn-grey four"
+                                ? "btn btn--selected four"
+                                : "btn four"
                         }
                         onClick={() => props.handleNumberOfPlayers(1)}
                     >
@@ -21,8 +21,8 @@ const GameOptions = (props) => {
                     <button
                         className={
                             props.numberOfPlayers === 2
-                                ? "btn btn-dark four"
-                                : "btn btn-grey four"
+                            ? "btn btn--selected four"
+                            : "btn four"
                         }
                         onClick={() => props.handleNumberOfPlayers(2)}
                     >
@@ -31,8 +31,8 @@ const GameOptions = (props) => {
                     <button
                         className={
                             props.numberOfPlayers === 3
-                                ? "btn btn-dark four"
-                                : "btn btn-grey four"
+                            ? "btn btn--selected four"
+                            : "btn four"
                         }
                         onClick={() => props.handleNumberOfPlayers(3)}
                     >
@@ -41,8 +41,8 @@ const GameOptions = (props) => {
                     <button
                         className={
                             props.numberOfPlayers === 4
-                                ? "btn btn-dark four"
-                                : "btn btn-grey four"
+                            ? "btn btn--selected four"
+                            : "btn four"
                         }
                         onClick={() => props.handleNumberOfPlayers(4)}
                     >
@@ -54,18 +54,18 @@ const GameOptions = (props) => {
                     <button
                         className={
                             props.gridSize === 8
-                                ? "btn btn-dark two"
-                                : "btn btn-grey two"
+                            ? "btn btn--selected two"
+                            : "btn four"
                         }
-                        onClick={() => props.handleGridSize(8)}
+                        onClick={() => props.handleGridSize(2)}
                     >
                         4x4
                     </button>
                     <button
                         className={
                             props.gridSize === 18
-                                ? "btn btn-dark two"
-                                : "btn btn-grey two"
+                            ? "btn btn--selected two"
+                            : "btn two"
                         }
                         onClick={() => props.handleGridSize(18)}
                     >

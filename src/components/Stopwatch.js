@@ -1,30 +1,46 @@
 import React from "react";
 
 const Stopwatch = (props) => {
-    const [time, setTime] = React.useState(0);
+    const [seconds, setSeconds] = React.useState(0);
     const [intervalId, setIntervalId] = React.useState();
 
     React.useEffect(() => {
-        if (props.playerStartedGame) {
+        if (
+            props.playerStartedGame &&
+            !props.isShowingMenuModal &&
+            !props.isGameFinished
+        ) {
             setIntervalId(
-                setInterval(() => setTime((prevTime) => prevTime + 1), 1000)
+                setInterval(() => setSeconds((seconds) => seconds + 1), 1000)
             );
-        } else {
+        } else if (props.isShowingMenuModal) {
             clearInterval(intervalId);
             setIntervalId();
-            setTime(0);
+        } else if (props.isGameFinished || !props.playerStartedGame) {
+            if (seconds > 0) {
+                props.stopwatchTime(seconds);
+            }
+            clearInterval(intervalId);
+            setIntervalId();
+            setSeconds(0);
         }
-    }, [props.playerStartedGame]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [
+        props.playerStartedGame,
+        props.isGameFinished,
+        props.isShowingMenuModal,
+    ]);
 
     return (
         <section className="stats">
             <p className="stats__text">Time</p>
             <p className="stats__data">
                 <span className="stopwatch__time">
-                    {("0" + Math.floor(time / 60)).slice(-2)}:
+                    {("0" + Math.floor(seconds / 60)).slice(-2)}:
                 </span>
                 <span className="stopwatch__time">
-                    {("0" + Math.floor(time % 60)).slice(-2)}
+                    {("0" + Math.floor(seconds % 60)).slice(-2)}
                 </span>
             </p>
         </section>
