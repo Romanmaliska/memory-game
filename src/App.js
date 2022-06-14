@@ -23,9 +23,15 @@ function App() {
     return (
         <div className="App">
             {isGameOn ? (
-                <Game handleStartGame={handleStartGame} numberOfPlayers={numberOfPlayers} gridSize={gridSize}/>
+                <Game
+                    handleStartGame={handleStartGame}
+                    numberOfPlayers={numberOfPlayers}
+                    gridSize={gridSize}
+                />
             ) : (
                 <GameOptions
+                    numberOfPlayers={numberOfPlayers}
+                    gridSize={gridSize}
                     handleNumberOfPlayers={handleNumberOfPlayers}
                     handleGridSize={handleGridSize}
                     handleStartGame={handleStartGame}

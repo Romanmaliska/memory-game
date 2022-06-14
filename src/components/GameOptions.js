@@ -9,25 +9,41 @@ const GameOptions = (props) => {
                 <h2 className="select__heading">Number of Players</h2>
                 <section className="select__option">
                     <button
-                        className="btn btn-grey four"
+                        className={
+                            props.numberOfPlayers === 1
+                                ? "btn btn-dark four"
+                                : "btn btn-grey four"
+                        }
                         onClick={() => props.handleNumberOfPlayers(1)}
                     >
                         1
                     </button>
                     <button
-                        className="btn btn-grey four"
+                        className={
+                            props.numberOfPlayers === 2
+                                ? "btn btn-dark four"
+                                : "btn btn-grey four"
+                        }
                         onClick={() => props.handleNumberOfPlayers(2)}
                     >
                         2
                     </button>
                     <button
-                        className="btn btn-grey four"
+                        className={
+                            props.numberOfPlayers === 3
+                                ? "btn btn-dark four"
+                                : "btn btn-grey four"
+                        }
                         onClick={() => props.handleNumberOfPlayers(3)}
                     >
                         3
                     </button>
                     <button
-                        className="btn btn-grey four"
+                        className={
+                            props.numberOfPlayers === 4
+                                ? "btn btn-dark four"
+                                : "btn btn-grey four"
+                        }
                         onClick={() => props.handleNumberOfPlayers(4)}
                     >
                         4
@@ -36,13 +52,21 @@ const GameOptions = (props) => {
                 <h2 className="select__heading">Grid Size</h2>
                 <section className="select__option">
                     <button
-                        className="btn btn-grey two"
+                        className={
+                            props.gridSize === 8
+                                ? "btn btn-dark two"
+                                : "btn btn-grey two"
+                        }
                         onClick={() => props.handleGridSize(8)}
                     >
                         4x4
                     </button>
                     <button
-                        className="btn btn-grey two"
+                        className={
+                            props.gridSize === 18
+                                ? "btn btn-dark two"
+                                : "btn btn-grey two"
+                        }
                         onClick={() => props.handleGridSize(18)}
                     >
                         6x6
