@@ -14,7 +14,18 @@ const ModalOnePlayerGameStats = (props) =>
                           </p>
                           <section>
                               <p className="modal__text">
-                                  Time Elapsed {props.time}{" "}
+                                  Time Elapsed 
+                                  <span>
+                                      {("0" + Math.floor(props.time / 60)).slice(
+                                          -2
+                                      )}
+                                      :
+                                  </span>
+                                  <span className="stopwatch__time">
+                                      {("0" + Math.floor(props.time % 60)).slice(
+                                          -2
+                                      )}
+                                  </span>
                               </p>
                           </section>
                           <section>

@@ -55,9 +55,9 @@ const GameOptions = (props) => {
                         className={
                             props.gridSize === 8
                             ? "btn btn--selected two"
-                            : "btn four"
+                            : "btn two"
                         }
-                        onClick={() => props.handleGridSize(2)}
+                        onClick={() => props.handleGridSize(8)}
                     >
                         4x4
                     </button>
@@ -73,7 +73,7 @@ const GameOptions = (props) => {
                     </button>
                 </section>
                 <button
-                    className="btn btn-yellow btn-start"
+                    className="btn btn--orange btn--big"
                     onClick={() => props.handleStartGame((prev) => true)}
                 >
                     Start Game

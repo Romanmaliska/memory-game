@@ -1,25 +1,28 @@
 .cards-grid-16 {
     display: grid;
+    justify-items: center;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 1rem;
-
+    
     margin-bottom: 5.375rem;
     
     .cards-grid-16__card {
-        width: 72px;
-        height: 72px;
-
-        border-radius: 100%;
-        border: none;
-
         font-size: 2.5rem;
         color: #fcfcfc;
+
+        width: 72px;
+        height: 72px;
+        
+        border-radius: 100%;
+        border: none;
+        
     }
 }
 
 .cards-grid-36 {
     display: grid;
+    justify-items: center;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
     gap: 0.5rem;
@@ -27,14 +30,15 @@
     margin-bottom: 5.375rem;
 
     .cards-grid-36__card {
+        font-size: 1rem;
+        line-height: 1rem;
+        color: #fcfcfc;
+
         width: 46px;
         height: 46px;
 
         border-radius: 100%;
         border: none;
-
-        font-size: 1rem;
-        color: #fcfcfc;
     }
 }
 

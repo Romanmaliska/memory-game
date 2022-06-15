@@ -1,13 +1,19 @@
 import React from "react";
 
 const PlayerChanger = (props) => {
+    
+
     return (
-        <section>
-            <p className="stats__text">P 1</p>
-            <p className="stats__data">{props.movesCounter%2 === 0 ? props.movesCounter : "fdf"}</p>
-            <p className="stats__text">P 2</p>
-            <p className="stats__data">{props.movesCounter%4 === 0 ? props.movesCounter : "fdf"}</p>
-        </section>
+        <>
+            <section className={props.movesCounter%2 !== 0 ? "stats" : "stats stats--selected"}>
+                <p className={props.movesCounter%2 !== 0 ? "stats__text" : "stats__text stats__text--selected"}>P 1</p>
+                <p className={props.movesCounter%2 !== 0 ? "stats__data" : "stats__data stats__data--selected"}>{props.p1Points}</p>
+            </section>
+            <section className={props.movesCounter%2 === 0 ? "stats" : "stats stats--selected"}>
+                <p className={props.movesCounter%2 === 0 ? "stats__text" : "stats__text stats__text--selected"}>P 2</p>
+                <p className={props.movesCounter%2 === 0 ? "stats__data" : "stats__data stats__data--selected"}>{props.p2Points}</p>
+            </section>
+        </>
     );
 };
 

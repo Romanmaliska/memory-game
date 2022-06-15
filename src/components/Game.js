@@ -5,6 +5,7 @@ import Stopwatch from "./Stopwatch";
 import PlayerChanger from "./PlayerChanger";
 import ModalMenuBtn from "./Modals/ModalMenuBtn";
 import ModalOnePlayerGameStats from "./Modals/ModalOnePlayerGameStats";
+import ModalTwoPlayersGameStats from "./Modals/ModalTwoPlayersGameStats";
 import "./game.scss";
 
 const Game = (props) => {
@@ -34,7 +35,11 @@ const Game = (props) => {
 
     const [cards, setCards] = React.useState(() => shuffleCards());
     const [firstFlipped, setFirstFlipped] = React.useState();
+    //counting the pairs of cards flipped by player
+    const [movesCounter, setMovesCounter] = React.useState(0);
     const [secondFlipped, setSecondFlipped] = React.useState();
+    const [p1Points, setP1Points] = React.useState(0);
+    const [p2Points, setP2Points] = React.useState(0);
 
     //displaying Game component
     const displayCards = cards.map((card) => (
@@ -78,6 +83,9 @@ const Game = (props) => {
             });
             setMovesCounter((prevMovesCounter) => prevMovesCounter + 1);
             resetFlipped();
+            movesCounter % 2 === 0
+                ? setP1Points((prevPoints) => prevPoints + 1)
+                : setP2Points((prevPoints) => prevPoints + 1);
         } else if (firstFlipped && !secondFlipped) {
             setCards((prevCards) => {
                 return prevCards.map((card) => {
@@ -119,10 +127,9 @@ const Game = (props) => {
             }, 3000);
             setMovesCounter((prevMovesCounter) => prevMovesCounter + 1);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [firstFlipped, secondFlipped]);
 
-    //counting the pairs of cards flipped by player
-    const [movesCounter, setMovesCounter] = React.useState(0);
     const [playerStartedGame, setPlayerStartedGame] = React.useState(false);
 
     //toggling Modal - ModalMenuBtn
@@ -156,7 +163,8 @@ const Game = (props) => {
         resetFlipped();
         setPlayerStartedGame(false);
         setMovesCounter((prevMovesCounter) => 0);
-
+        setP1Points(0);
+        setP2Points(0);
         if (!isGameFinished) {
             toggleMenuModal();
         }
@@ -167,7 +175,7 @@ const Game = (props) => {
             <nav className="nav">
                 <h1 className="nav__heading">memory</h1>
                 <button
-                    className="nav__btn btn btn-yellow"
+                    className="nav__btn btn btn--orange"
                     onClick={toggleMenuModal}
                 >
                     Menu
@@ -192,24 +200,37 @@ const Game = (props) => {
                 </footer>
             ) : (
                 <footer className="footer">
-                    <PlayerChanger movesCounter={movesCounter} />
+                    <PlayerChanger
+                        movesCounter={movesCounter}
+                        p1Points={p1Points}
+                        p2Points={p2Points}
+                    />
                 </footer>
             )}
-            <ModalMenuBtn
+             <ModalMenuBtn
                 className="modal"
                 isShowingMenuModal={isShowingMenuModal}
                 toggleMenuModal={toggleMenuModal}
                 handleRestart={handleRestart}
                 handleStartGame={props.handleStartGame}
             />
-            <ModalOnePlayerGameStats
+             {props.numberOfPlayers === 1 && <ModalOnePlayerGameStats
                 className="modal"
                 isGameFinished={isGameFinished}
                 handleRestart={handleRestart}
                 handleStartGame={props.handleStartGame}
                 movesCounter={movesCounter}
                 time={time}
-            />
+            />}
+              {props.numberOfPlayers === 2 && <ModalTwoPlayersGameStats
+                className="modal"
+                isGameFinished={isGameFinished}
+                handleRestart={handleRestart}
+                handleStartGame={props.handleStartGame}
+                movesCounter={movesCounter}
+                p1Points={p1Points}
+                p2Points={p2Points}
+            />}
         </>
     );
 };

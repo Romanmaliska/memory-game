@@ -38,12 +38,20 @@ button {
     font-size: 1rem;
     line-height: 1.25;
     text-align: center;
-    text-transform: none;
     color: #FCFCFC;
 
-    border-radius: 35px;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    
+    border-radius: 26px;
     border: none;
+    
     background-color: #BCCED9;
+
+}
+
+.btn:hover{
+    background-color: #6395b8;
 }
 
 .btn--selected{
@@ -51,10 +59,18 @@ button {
 }
 
 
-.btn-yellow {
+.btn--orange {
     background-color: #fda214;
 }
 
-.btn-grey {
-    background-color: #BCCED9;
+.btn--orange:hover {
+    background-color: #fdb714;
+}
+
+.btn--big{
+    font-size: 1.125rem;
+    line-height: 1.375;
+
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
