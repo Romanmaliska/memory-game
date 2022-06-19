@@ -34,19 +34,25 @@ const Game = (props) => {
     };
 
     const [cards, setCards] = React.useState(() => shuffleCards());
-    const [firstFlipped, setFirstFlipped] = React.useState();
     //counting the pairs of cards flipped by player
     const [movesCounter, setMovesCounter] = React.useState(0);
+    const [firstFlipped, setFirstFlipped] = React.useState();
     const [secondFlipped, setSecondFlipped] = React.useState();
-    const [p1Points, setP1Points] = React.useState(0);
-    const [p2Points, setP2Points] = React.useState(0);
+    const [players, setPlayers] = React.useState(
+        [
+            { player: 1, points: 0, id: 1 },
+            { player: 2, points: 0, id: 2 },
+            { player: 3, points: 0, id: 3 },
+            { player: 4, points: 0, id: 4 },
+        ].slice(0, props.numberOfPlayers)
+    );
 
     //displaying Game component
     const displayCards = cards.map((card) => (
         <Card
             key={card.id}
-            value={card.value}
             id={card.id}
+            value={card.value}
             isFlipped={card.isFlipped}
             isMatched={card.isMatched}
             disabled={card.disabled}
@@ -68,6 +74,8 @@ const Game = (props) => {
         setSecondFlipped();
     };
 
+    let activePlayerIndex = movesCounter % props.numberOfPlayers;
+
     // managing cards selected by player
     React.useEffect(() => {
         if (secondFlipped && firstFlipped.value === secondFlipped.value) {
@@ -81,11 +89,22 @@ const Game = (props) => {
                         : card;
                 });
             });
-            setMovesCounter((prevMovesCounter) => prevMovesCounter + 1);
+
+            if (props.numberOfPlayers === 1) {
+                setMovesCounter((prevMovesCounter) => prevMovesCounter + 1);
+            } else {
+                setPlayers((prevPlayers) => {
+                    return prevPlayers.map((item, index) => {
+                        return index === activePlayerIndex
+                            ? {
+                                  ...item,
+                                  points: item.points + 1,
+                              }
+                            : item;
+                    });
+                });
+            }
             resetFlipped();
-            movesCounter % 2 === 0
-                ? setP1Points((prevPoints) => prevPoints + 1)
-                : setP2Points((prevPoints) => prevPoints + 1);
         } else if (firstFlipped && !secondFlipped) {
             setCards((prevCards) => {
                 return prevCards.map((card) => {
@@ -103,17 +122,12 @@ const Game = (props) => {
                     return card.id === secondFlipped.id
                         ? {
                               ...card,
+                              disabled: true,
                               isFlipped: true,
                           }
-                        : card;
+                        : { ...card, disabled: true };
                 });
             });
-            setCards((prevCards) => {
-                return prevCards.map((card) => {
-                    return { ...card, disabled: true };
-                });
-            });
-            resetFlipped();
             setTimeout(() => {
                 setCards((prevCards) => {
                     return prevCards.map((card) => {
@@ -124,10 +138,11 @@ const Game = (props) => {
                         };
                     });
                 });
-            }, 3000);
+            }, 1500);
             setMovesCounter((prevMovesCounter) => prevMovesCounter + 1);
+            resetFlipped();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [firstFlipped, secondFlipped]);
 
     const [playerStartedGame, setPlayerStartedGame] = React.useState(false);
@@ -160,11 +175,17 @@ const Game = (props) => {
     // handling restart of the game from Modals btns - ModalMenuBtn and ModalOnePlayerGameStats
     const handleRestart = () => {
         setCards(() => shuffleCards());
+        setPlayers((prevPlayers) => {
+            return prevPlayers.map((player) => {
+                return {
+                    ...player,
+                    points: 0,
+                };
+            });
+        });
         resetFlipped();
         setPlayerStartedGame(false);
-        setMovesCounter((prevMovesCounter) => 0);
-        setP1Points(0);
-        setP2Points(0);
+        setMovesCounter(0);
         if (!isGameFinished) {
             toggleMenuModal();
         }
@@ -174,16 +195,13 @@ const Game = (props) => {
         <>
             <nav className="nav">
                 <h1 className="nav__heading">memory</h1>
-                <button
-                    className="nav__btn btn btn--orange"
-                    onClick={toggleMenuModal}
-                >
+                <button className="btn btn--orange" onClick={toggleMenuModal}>
                     Menu
                 </button>
             </nav>
             <main
                 className={
-                    props.gridSize === 8 ? "cards-grid-16" : "cards-grid-36"
+                    props.gridSize === 8 ? "cards-grid" : "cards-grid--large"
                 }
             >
                 {displayCards}
@@ -201,36 +219,38 @@ const Game = (props) => {
             ) : (
                 <footer className="footer">
                     <PlayerChanger
-                        movesCounter={movesCounter}
-                        p1Points={p1Points}
-                        p2Points={p2Points}
+                        players={players}
+                        activePlayerIndex={activePlayerIndex}
                     />
                 </footer>
             )}
-             <ModalMenuBtn
+            <ModalMenuBtn
                 className="modal"
                 isShowingMenuModal={isShowingMenuModal}
                 toggleMenuModal={toggleMenuModal}
                 handleRestart={handleRestart}
                 handleStartGame={props.handleStartGame}
             />
-             {props.numberOfPlayers === 1 && <ModalOnePlayerGameStats
-                className="modal"
-                isGameFinished={isGameFinished}
-                handleRestart={handleRestart}
-                handleStartGame={props.handleStartGame}
-                movesCounter={movesCounter}
-                time={time}
-            />}
-              {props.numberOfPlayers === 2 && <ModalTwoPlayersGameStats
-                className="modal"
-                isGameFinished={isGameFinished}
-                handleRestart={handleRestart}
-                handleStartGame={props.handleStartGame}
-                movesCounter={movesCounter}
-                p1Points={p1Points}
-                p2Points={p2Points}
-            />}
+            {props.numberOfPlayers === 1 && (
+                <ModalOnePlayerGameStats
+                    className="modal"
+                    isGameFinished={isGameFinished}
+                    handleRestart={handleRestart}
+                    handleStartGame={props.handleStartGame}
+                    movesCounter={movesCounter}
+                    time={time}
+                />
+            )}
+            {props.numberOfPlayers !== 1 && (
+                <ModalTwoPlayersGameStats
+                    className="modal"
+                    players={players}
+                    isGameFinished={isGameFinished}
+                    handleRestart={handleRestart}
+                    handleStartGame={props.handleStartGame}
+                    movesCounter={movesCounter}
+                />
+            )}
         </>
     );
 };

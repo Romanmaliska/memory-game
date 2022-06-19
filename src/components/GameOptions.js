@@ -2,79 +2,52 @@ import React from "react";
 import "./GameOptions.scss";
 
 const GameOptions = (props) => {
+    const playersButtons = [1, 2, 3, 4];
+    const gridButtons = [8, 18];
+
     return (
         <div className="options">
-            <h1 className="options__heading">memory</h1>
+            <h1 className="options__heading">memory game</h1>
             <div className="select">
                 <h2 className="select__heading">Number of Players</h2>
                 <section className="select__option">
-                    <button
-                        className={
-                            props.numberOfPlayers === 1
-                                ? "btn btn--selected four"
-                                : "btn four"
-                        }
-                        onClick={() => props.handleNumberOfPlayers(1)}
-                    >
-                        1
-                    </button>
-                    <button
-                        className={
-                            props.numberOfPlayers === 2
-                            ? "btn btn--selected four"
-                            : "btn four"
-                        }
-                        onClick={() => props.handleNumberOfPlayers(2)}
-                    >
-                        2
-                    </button>
-                    <button
-                        className={
-                            props.numberOfPlayers === 3
-                            ? "btn btn--selected four"
-                            : "btn four"
-                        }
-                        onClick={() => props.handleNumberOfPlayers(3)}
-                    >
-                        3
-                    </button>
-                    <button
-                        className={
-                            props.numberOfPlayers === 4
-                            ? "btn btn--selected four"
-                            : "btn four"
-                        }
-                        onClick={() => props.handleNumberOfPlayers(4)}
-                    >
-                        4
-                    </button>
+                    {playersButtons.map((button) => {
+                        return (
+                            <button
+                                className={
+                                    props.numberOfPlayers === button
+                                        ? "btn btn--selected"
+                                        : "btn"
+                                }
+                                onClick={() =>
+                                    props.handleNumberOfPlayers(button)
+                                }
+                            >
+                                {button}
+                            </button>
+                        );
+                    })}
                 </section>
                 <h2 className="select__heading">Grid Size</h2>
                 <section className="select__option">
-                    <button
-                        className={
-                            props.gridSize === 8
-                            ? "btn btn--selected two"
-                            : "btn two"
-                        }
-                        onClick={() => props.handleGridSize(8)}
-                    >
-                        4x4
-                    </button>
-                    <button
-                        className={
-                            props.gridSize === 18
-                            ? "btn btn--selected two"
-                            : "btn two"
-                        }
-                        onClick={() => props.handleGridSize(18)}
-                    >
-                        6x6
-                    </button>
+                    {gridButtons.map((button) => {
+                        return (
+                            <button
+                                className={
+                                    props.gridSize === button
+                                        ? "btn btn--selected"
+                                        : "btn"
+                                }
+                                onClick={() => props.handleGridSize(button)}
+                            >
+                                {button === 8 ? "4 x 4" : "6 x 6"}
+                            </button>
+                        );
+                    })}
                 </section>
                 <button
                     className="btn btn--orange btn--big"
-                    onClick={() => props.handleStartGame((prev) => true)}
+                    onClick={() => props.handleStartGame(true)}
                 >
                     Start Game
                 </button>

@@ -11,11 +11,12 @@ body {
     justify-content: center;
     align-items: center;
 
-    margin: 0;
-
     font-family: "Atkinson Hyperlegible", sans-serif;
     font-weight: 700;
-    font-size: 2.5rem;
+    font-size: 1rem;
+    color: #fcfcfc;
+   
+    margin: 0;
 }
 
 h1,
@@ -25,7 +26,7 @@ h4,
 h5,
 h6,
 p,
-button {
+button{
     margin: 0;
     padding: 0;
 }
@@ -42,6 +43,11 @@ button {
 
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-bottom: 1rem;
+
+    width: 100%;
     
     border-radius: 26px;
     border: none;
@@ -57,7 +63,6 @@ button {
 .btn--selected{
     background-color: #152938;
 }
-
 
 .btn--orange {
     background-color: #fda214;

@@ -9,19 +9,19 @@ const ModalMenuBtn = (props) =>
                 <div className="centered">
                   <div className="modal">
                       <button
-                          className="btn btn-grey"
+                          className="btn btn--big btn--orange"
                           onClick={props.handleRestart}
                       >
                           Restart
                       </button>
                       <button
-                          className="btn btn-yellow "
+                          className="btn btn--big "
                           onClick={() => props.handleStartGame((prev) => false)}
                       >
                           New Game
                       </button>
                       <button
-                          className="btn btn-grey"
+                          className="btn btn--big "
                           onClick={props.toggleMenuModal}
                       >
                           Resume Game

@@ -2,7 +2,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     width: 100vw;
     height: 100vh;
-    z-index: 0;
+    z-index: 9;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -13,45 +13,56 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        // max-width: calc(100% - 2rem);
     }
     .modal {
-        margin: 1rem;
-        padding: 1rem;
-        width: 250px;
-        height: 170px;
+        padding: 1.5rem;
+
         background-color: #f2f2f2;
         z-index: 10;
         border-radius: 16px;
-        
+
         .modal__heading {
-            text-align: center;
             font-size: 1.5rem;
+            text-align: center;
             line-height: 1.875;
             color: #152938;
-        }
-        
-        .modal__text {
-            text-align: center;
-            font-size: 0.875rem;
-            line-height: 1.125;
-            color: #7191a5;
+
+            margin-bottom: 1rem;
         }
 
-        .modal__field {
+        .modal__text {
+            font-size: 0.875rem;
+            line-height: 1.125;
+            text-align: center;
             color: #7191a5;
+
+            margin-bottom: 2rem;
+        }
+
+        .modal__stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12rem;
+            
+            font-size: 0.875rem;
+            color: #7191a5;
+
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+
             border-radius: 5px;
             background-color: #dfe7ec;
         }
-        .modal__field--higlighted {
+
+        .modal__stats--higlighted {
             color: #fcfcfc;
             background-color: #152938;
         }
 
-        .modal__field__number {
-            text-align: right;
+        .modal__stats__number {
             font-size: 1.25rem;
-            line-height: 1.625;
-            text-align: right;
         }
     }
 }

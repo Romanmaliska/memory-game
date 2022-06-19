@@ -12,35 +12,31 @@ const ModalOnePlayerGameStats = (props) =>
                           <p className="modal__text">
                               Game over! Here is how you got on…
                           </p>
-                          <section>
-                              <p className="modal__text">
-                                  Time Elapsed 
-                                  <span>
-                                      {("0" + Math.floor(props.time / 60)).slice(
-                                          -2
-                                      )}
+                          <section className="modal__stats">
+                              <p>Time Elapsed</p>
+                              <p>
+                                  <span className="modal__stats__number" >
+                                      {(
+                                          " 0" + Math.floor(props.time / 60)
+                                      ).slice(-2)}
                                       :
                                   </span>
-                                  <span className="stopwatch__time">
-                                      {("0" + Math.floor(props.time % 60)).slice(
-                                          -2
-                                      )}
+                                  <span className="modal__stats__number">
+                                      {(
+                                          "0" + Math.floor(props.time % 60)
+                                      ).slice(-2)}
                                   </span>
                               </p>
                           </section>
-                          <section>
-                              <p className="modal__text">
-                                  Moves Taken {props.movesCounter}
-                              </p>
+                          <section className="modal__stats">
+                              <p>Moves Taken</p>
+                              <p className="modal__stats__number">{props.movesCounter}</p>
                           </section>
-                          <button
-                              className="btn btn-grey"
-                              onClick={props.handleRestart}
-                          >
+                          <button className="btn" onClick={props.handleRestart}>
                               Restart
                           </button>
                           <button
-                              className="btn btn-yellow "
+                              className="btn btn--orange"
                               onClick={() =>
                                   props.handleStartGame((prev) => false)
                               }
