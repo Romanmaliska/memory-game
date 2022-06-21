@@ -36,10 +36,11 @@ const Stopwatch = (props) => {
         <section className="stats">
             <p className="stats__text">Time</p>
             <p className="stats__data">
-                <span className="stopwatch__time">
-                    {("0" + Math.floor(seconds / 60)).slice(-2)}:
+                <span className="stats__time--minutes">
+                    {("0" + Math.floor(seconds / 60)).slice(-2)}
                 </span>
-                <span className="stopwatch__time">
+                <span>:</span>
+                <span className="stats__time--seconds">
                     {("0" + Math.floor(seconds % 60)).slice(-2)}
                 </span>
             </p>

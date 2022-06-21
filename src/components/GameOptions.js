@@ -8,12 +8,12 @@ const GameOptions = (props) => {
     return (
         <div className="options">
             <h1 className="options__heading">memory game</h1>
-            <div className="select">
-                <h2 className="select__heading">Number of Players</h2>
-                <section className="select__option">
+            <div className="options__select">
+                <h2 className="options__text">Number of Players</h2>
+                <section className="options__option ">
                     {playersButtons.map((button) => {
                         return (
-                            <button
+                            <button key={button}
                                 className={
                                     props.numberOfPlayers === button
                                         ? "btn btn--selected"
@@ -28,11 +28,11 @@ const GameOptions = (props) => {
                         );
                     })}
                 </section>
-                <h2 className="select__heading">Grid Size</h2>
-                <section className="select__option">
+                <h2 className="options__text">Grid Size</h2>
+                <section className="options__option ">
                     {gridButtons.map((button) => {
                         return (
-                            <button
+                            <button key={button}
                                 className={
                                     props.gridSize === button
                                         ? "btn btn--selected"

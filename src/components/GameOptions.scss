@@ -1,33 +1,37 @@
+@import "../variables";
+
 .options {
-    padding: 5rem 1.5rem 5rem 1.5rem;
+    padding: 4rem 1.5rem;
 
-    background-color: #152938;
+    background-color: $primary-color-darker;
 
-    .options__heading {
-        font-size: 2rem;
-        text-align: center;
-
-        padding-bottom: 3rem;
-    }
-
-    .select {
-        background: #fcfcfc;
-        border-radius: 20px;
-
-        padding: 1.5rem;
-    }
-
-    .select__option {
-        display: flex;
-        justify-content: space-between;
-        gap: 0.75rem;
-    }
-
-    .select__heading {
-        font-size: 1rem;
-        line-height: 1.125;
-        color: #7191a5;
-
-        padding-bottom: 0.75rem;
-    }
 }
+
+.options__heading {
+    font-size: 2rem;
+    text-align: center;
+
+    padding-bottom: 3rem;
+}
+
+.options__select {
+    padding: 2rem 1.5rem 1.5rem;
+    
+    background-color: $primary-bg-color;
+    border-radius: 1.25rem; 
+}
+
+.options__text {
+    font-size: 1rem;
+    line-height: 1.125;
+    color: $secondary-text-color;
+
+    padding-bottom: 0.75rem;
+}
+
+.options__option {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+

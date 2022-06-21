@@ -6,7 +6,6 @@ const ModalMenuBtn = (props) =>
     props.isShowingMenuModal
         ? ReactDOM.createPortal(
               <div className="modal-overlay">
-                <div className="centered">
                   <div className="modal">
                       <button
                           className="btn btn--big btn--orange"
@@ -26,7 +25,6 @@ const ModalMenuBtn = (props) =>
                       >
                           Resume Game
                       </button>
-                      </div>
                   </div>
               </div>,
               document.body

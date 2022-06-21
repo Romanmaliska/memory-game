@@ -195,13 +195,13 @@ const Game = (props) => {
         <>
             <nav className="nav">
                 <h1 className="nav__heading">memory</h1>
-                <button className="btn btn--orange" onClick={toggleMenuModal}>
+                <button className="btn btn--orange btn--w-auto " onClick={toggleMenuModal}>
                     Menu
                 </button>
             </nav>
             <main
                 className={
-                    props.gridSize === 8 ? "cards-grid" : "cards-grid--large"
+                    props.gridSize === 8 ? "cards" : "cards cards--large"
                 }
             >
                 {displayCards}

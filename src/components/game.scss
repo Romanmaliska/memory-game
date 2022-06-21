@@ -1,13 +1,16 @@
+@import "../variables";
+
 .nav {
     display: flex;
+    justify-content: space-between;
+    gap: 1rem;
     margin: 1.5rem 0;
+}
 
-    .nav__heading {
-        margin-right: auto;
-        font-size: 1.5rem;
-        line-height: 1.625;
-        color: #152938;
-    }
+.nav__heading {
+    font-size: 1.5rem;
+    line-height: 1.625;
+    color: $primary-color-darker;
 }
 
 .footer {
@@ -15,32 +18,48 @@
     justify-content: space-between;
     gap: 1.5rem;
 
-    .stats {
-        text-align: center;
+    font-family: $secondary-text-font;
+}
 
-        padding: 0.5rem 2.875rem 0.125rem 2.875rem;
+.stats {
+    text-align: center;
 
-        background-color: #bcced9;
-        
-        border-radius: 5px;
-        
-        .stats__text {
-            font-size: 1rem;
-            line-height: 1.25;
-            color: #7191a5;
-        }
-        .stats__data {
-            font-size: 1.5rem;
-            line-height: 1.875;
-            color: #304859;
-        }
-    }
-    
-    .stats--selected{
-        background-color: #FDA214;
-        
-        .stats__text, .stats__data {
-            color: #ffffff;
-        }
+    padding: 0.5rem 2.875rem 0.125rem;
+
+    background-color: $primary-color;
+
+    border-radius: 5px;
+
+    &--selected {
+        background-color: $secondary-color;
     }
 }
+
+.stats__text {
+    font-size: 1rem;
+    line-height: 1.25;
+    color: $secondary-text-color;
+}
+
+.stats__data {
+    font-size: 1.5rem;
+    line-height: 1.875;
+    color: $primary-color-dark;
+}
+
+.stats__data,
+.stats__text {
+    .stats--selected & {
+        color: $primary-text-color;
+    }
+}
+
+// .stats__time {
+//     // neco sem? jinak jsou to dva elementy ne dva modifikatory
+
+//     &--minutes {
+//     }
+
+//     &--seconds {
+//     }
+// }

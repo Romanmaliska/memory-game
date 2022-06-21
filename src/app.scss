@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+
+@import "variables";
 
 *,
 ::before,
@@ -11,11 +14,11 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-family: $primary-text-font;
     font-weight: 700;
     font-size: 1rem;
-    color: #fcfcfc;
-   
+    color: $primary-text-color;
+
     margin: 0;
 }
 
@@ -26,56 +29,59 @@ h4,
 h5,
 h6,
 p,
-button{
+button {
     margin: 0;
     padding: 0;
 }
 
-// =========== Utilities //
+// =========== Buttons //
 
 .btn {
-    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-family: $primary-text-font;
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.25;
     text-align: center;
-    color: #FCFCFC;
-
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    margin-bottom: 1rem;
+    color: $primary-text-color;
 
     width: 100%;
-    
-    border-radius: 26px;
+    padding: 0.625rem 1.5rem;
     border: none;
-    
-    background-color: #BCCED9;
+    margin-bottom: 1rem;
 
+    border-radius: 1.625rem;
+
+    background-color: $primary-color;
+
+    &:hover {
+        background-color: $primary-color-hover;
+    }
 }
 
-.btn:hover{
-    background-color: #6395b8;
-}
+.btn--selected {
+    background-color: $primary-color-dark;
 
-.btn--selected{
-    background-color: #152938;
+    &:hover {
+        background-color: $primary-color-dark;
+    }
 }
 
 .btn--orange {
-    background-color: #fda214;
+    background-color: $secondary-color;
+
+    &:hover {
+        background-color: $secondary-color-hover;
+    }
 }
 
-.btn--orange:hover {
-    background-color: #fdb714;
-}
-
-.btn--big{
+.btn--big {
     font-size: 1.125rem;
     line-height: 1.375;
 
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
+}
+
+.btn--w-auto {
+    width: auto;
 }
