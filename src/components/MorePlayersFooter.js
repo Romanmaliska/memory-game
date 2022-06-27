@@ -6,6 +6,7 @@ const PlayerChanger = (props) => {
             {props.players.map((player, index) => {
                 return (
                     <section
+                        key={Math.random()}
                         className={
                             index === props.activePlayerIndex
                                 ? "stats stats--selected"

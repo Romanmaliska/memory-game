@@ -1,12 +1,10 @@
 @import "./src/variables";
 
-.modal-overlay {
+.modal {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     position: absolute;
-    transform: translate(-50%, -50%);
-  
 
     width: 100vw;
     height: 100vh;
@@ -14,67 +12,64 @@
     left: 50%;
 
     background-color: rgba(0, 0, 0, 0.5);
+
+    transform: translate(-50%, -50%);
     // top: 0; bottom: 0; left: 0; right: 0; (ancestor must be relative or absolute)
     // no transform, no dimensions needed
+}
 
-    .modal {
-        max-width: 22rem;
-        padding: 1.5rem;
-        top: 10%;
-        left: 50%;
+.modal__frame {
+    width: 20rem;
+    margin-top: 9rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
 
-        background-color: $primary-bg-color;
+    background-color: $primary-bg-color;
+}
 
-        border-radius: 1rem;
+.modal__heading {
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 1.875;
+    color: $primary-color-darker;
+
+    margin-bottom: 1rem;
+}
+
+.modal__text {
+    font-size: 0.875rem;
+    line-height: 1.125;
+    text-align: center;
+    color: $secondary-text-color;
+
+    margin-bottom: 2rem;
+}
+
+.modal__stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 0.875rem;
+    color: $secondary-text-color;
+
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+
+    background-color: $secondary-bg-color;
+
+    &--higlighted {
+        color: $primary-text-color;
+        background-color: $primary-color-darker;
     }
+}
 
-    .modal__heading {
-        font-size: 1.5rem;
-        text-align: center;
+.modal__stats__numbers {
+    font-size: 1.25rem;
+    color: $primary-color-dark;
+}
 
-        line-height: 1.875;
-        color: $primary-color-darker;
-
-        margin-bottom: 1rem;
-    }
-
-    .modal__text {
-        font-size: 0.875rem;
-        line-height: 1.125;
-        text-align: center;
-        color: $secondary-text-color;
-
-        margin-bottom: 2rem;
-    }
-
-    .modal__stats {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        font-size: 0.875rem;
-        color: $secondary-text-color;
-
-        padding: 0.5rem;
-        margin-bottom: 1rem;
-
-        border-radius: 0.375rem; 
-        background-color: $primary-bg-color;
-
-        &--higlighted {
-            color: $primary-text-color;
-            background-color: $primary-color-darker;
-        }
-    }
-
-    .modal__neco {
-        // asi budes potrebovat
-        flex-basis: auto /* neco*/;
-        flex-grow: 0 /* neco*/;
-        flex-shrink: 1 /* neco*/;
-    }
-
-    .modal__number {
-        font-size: 1.25rem;
-    }
+.modal__stats__numbers--higlighted {
+    font-size: 1.25rem;
 }

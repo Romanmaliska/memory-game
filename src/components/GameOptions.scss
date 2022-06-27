@@ -1,7 +1,7 @@
 @import "../variables";
 
 .options {
-    padding: 4rem 1.5rem;
+    padding: 4.375rem 1.5rem;
 
     background-color: $primary-color-darker;
 
@@ -16,9 +16,9 @@
 
 .options__select {
     padding: 2rem 1.5rem 1.5rem;
+    border-radius: 1.25rem; 
     
     background-color: $primary-bg-color;
-    border-radius: 1.25rem; 
 }
 
 .options__text {

@@ -5,8 +5,8 @@ import "./modal.scss";
 const ModalMenuBtn = (props) =>
     props.isShowingMenuModal
         ? ReactDOM.createPortal(
-              <div className="modal-overlay">
-                  <div className="modal">
+              <div className="modal">
+                  <div className="modal__frame">
                       <button
                           className="btn btn--big btn--orange"
                           onClick={props.handleRestart}

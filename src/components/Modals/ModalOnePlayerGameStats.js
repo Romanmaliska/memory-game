@@ -5,22 +5,22 @@ import "./modal.scss";
 const ModalOnePlayerGameStats = (props) =>
     props.isGameFinished
         ? ReactDOM.createPortal(
-              <div className="modal-overlay">
-                  <div className="modal">
+              <div className="modal">
+                  <div className="modal__frame">
                       <h2 className="modal__heading">You did it!</h2>
                       <p className="modal__text">
                           Game over! Here is how you got on…
                       </p>
                       <section className="modal__stats">
                           <p>Time Elapsed</p>
-                          <p>
-                              <span className="modal__number">
+                          <p className="modal__stats__numbers">
+                              <span>
                                   {(" 0" + Math.floor(props.time / 60)).slice(
                                       -2
                                   )}
                                   :
                               </span>
-                              <span className="modal__number">
+                              <span>
                                   {("0" + Math.floor(props.time % 60)).slice(
                                       -2
                                   )}
@@ -28,8 +28,8 @@ const ModalOnePlayerGameStats = (props) =>
                           </p>
                       </section>
                       <section className="modal__stats">
-                          <p className="modal__neco">Moves Taken</p>
-                          <p className="modal__number">{props.movesCounter}</p>
+                          <p>Moves Taken</p>
+                          <p className="modal__stats__numbers">{props.movesCounter}</p>
                       </section>
                       <button className="btn btn--orange" onClick={props.handleRestart}>
                           Restart

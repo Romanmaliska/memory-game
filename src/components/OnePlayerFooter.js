@@ -1,6 +1,6 @@
 import React from "react";
 
-const Stopwatch = (props) => {
+const OnePlayerFooter = (props) => {
     const [seconds, setSeconds] = React.useState(0);
     const [intervalId, setIntervalId] = React.useState();
 
@@ -25,7 +25,8 @@ const Stopwatch = (props) => {
             setSeconds(0);
         }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         props.playerStartedGame,
         props.isGameFinished,
@@ -33,19 +34,25 @@ const Stopwatch = (props) => {
     ]);
 
     return (
-        <section className="stats">
-            <p className="stats__text">Time</p>
-            <p className="stats__data">
-                <span className="stats__time--minutes">
-                    {("0" + Math.floor(seconds / 60)).slice(-2)}
-                </span>
-                <span>:</span>
-                <span className="stats__time--seconds">
-                    {("0" + Math.floor(seconds % 60)).slice(-2)}
-                </span>
-            </p>
-        </section>
+        <>
+            <section className="stats">
+                <p className="stats__text">Time</p>
+                <p className="stats__data">
+                    <span className="stats__time--minutes">
+                        {("0" + Math.floor(seconds / 60)).slice(-2)}
+                    </span>
+                    <span className="stats__time--twin">:</span>
+                    <span className="stats__time--seconds">
+                        {("0" + Math.floor(seconds % 60)).slice(-2)}
+                    </span>
+                </p>
+            </section>
+            <section className="stats">
+                <p className="stats__text">Moves</p>
+                <p className="stats__data">{props.movesCounter}</p>
+            </section>
+        </>
     );
 };
 
-export default Stopwatch;
+export default OnePlayerFooter;

@@ -6,13 +6,12 @@ const ModalTwoPlayersGameStats = (props) => {
     if (!props.isGameFinished) {
         return null;
     }
-    console.log(props.players);
     let players = [...props.players].sort((a, b) => b.points - a.points);
     let isTie = players[0].points === players[1].points;
 
     return ReactDOM.createPortal(
-        <div className="modal-overlay">
-            <div className="modal">
+        <div className="modal">
+            <div className="modal__frame">
                 <h2 className="modal__heading">
                     {isTie
                         ? "It's a tie!"
@@ -25,11 +24,11 @@ const ModalTwoPlayersGameStats = (props) => {
                             className={
                                 players[0].points === player.points
                                     ? "modal__stats modal__stats--higlighted"
-                                    : "modal__stats"
+                                    : "modal__stats "
                             }
                         >
                             <span>Player {player.player}</span>
-                            <span className="modal__stats__number">
+                            <span>
                                 {player.points} Pairs
                             </span>
                         </div>

@@ -1,11 +1,10 @@
 import React from "react";
 import Card from "./Card";
-import MovesCounter from "./MovesCounter";
-import Stopwatch from "./Stopwatch";
-import PlayerChanger from "./PlayerChanger";
+import OnePlayerFooter from "./OnePlayerFooter";
+import MorePlayersFooter from "./MorePlayersFooter";
 import ModalMenuBtn from "./Modals/ModalMenuBtn";
 import ModalOnePlayerGameStats from "./Modals/ModalOnePlayerGameStats";
-import ModalTwoPlayersGameStats from "./Modals/ModalTwoPlayersGameStats";
+import ModalTwoPlayersGameStats from "./Modals/ModalMorePlayersGameStats";
 import "./game.scss";
 
 const Game = (props) => {
@@ -142,8 +141,7 @@ const Game = (props) => {
             setMovesCounter((prevMovesCounter) => prevMovesCounter + 1);
             resetFlipped();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [firstFlipped, secondFlipped]);
+    }, [firstFlipped, secondFlipped, props.numberOfPlayers, activePlayerIndex]);
 
     const [playerStartedGame, setPlayerStartedGame] = React.useState(false);
 
@@ -195,7 +193,10 @@ const Game = (props) => {
         <>
             <nav className="nav">
                 <h1 className="nav__heading">memory</h1>
-                <button className="btn btn--orange btn--w-auto " onClick={toggleMenuModal}>
+                <button
+                    className="btn btn--orange btn--w-auto "
+                    onClick={toggleMenuModal}
+                >
                     Menu
                 </button>
             </nav>
@@ -208,17 +209,17 @@ const Game = (props) => {
             </main>
             {props.numberOfPlayers === 1 ? (
                 <footer className="footer">
-                    <MovesCounter movesCounter={movesCounter} />
-                    <Stopwatch
+                    <OnePlayerFooter
                         isGameFinished={isGameFinished}
                         playerStartedGame={playerStartedGame}
                         isShowingMenuModal={isShowingMenuModal}
                         stopwatchTime={stopwatchTime}
+                        movesCounter={movesCounter}
                     />
                 </footer>
             ) : (
-                <footer className="footer">
-                    <PlayerChanger
+                <footer className={"footer footer--morePlayers"}>
+                    <MorePlayersFooter
                         players={players}
                         activePlayerIndex={activePlayerIndex}
                     />
